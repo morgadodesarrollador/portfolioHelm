@@ -9,7 +9,7 @@ pipeline {
       }
     }
 
-    stage('Info') {
+    stage('Info2') {
       steps {
         sh 'git rev-parse --short HEAD'
       }
