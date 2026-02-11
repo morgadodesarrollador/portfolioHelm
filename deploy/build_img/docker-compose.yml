@@ -1,0 +1,20 @@
+services:
+  miportfolio:
+    build: 
+      context: ${CONTEXTO}
+      dockerfile: ./dockerfiles/JS/es6/Dockerfile
+      args: #variables en DFILE para la construccion (build) de la imagen
+        - PROYECTO=${PROYECTO}
+        - USUARIO=${USUARIO}
+        - TIPO=${TIPO}
+        
+    image: ${FIRMA}/${PROYECTO}
+    hostname: ${CONTENEDOR}
+    container_name: ${CONTENEDOR}
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/root/logs
+    ports:
+      - "${PORT_WWW}:80"
+

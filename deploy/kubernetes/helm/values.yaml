@@ -1,0 +1,35 @@
+app:
+  name: miportfolio
+  image:
+    repository: morgadoberruezo/miportfolio
+    tag: latest
+    pullPolicy: Always
+  # containerPort: 3000   
+  container: 
+    name: miportfolio
+    port: 80
+    replicas: 1
+  service:
+    type: NodePort
+    port: 3000
+    nodePort: 30087
+  ingress:
+    host: miportfolio.jamorgado.es
+    port: 80
+
+postgres:
+  name: usuarios-postgres
+  image:
+    repository: postgres
+    tag: "15-alpine"
+    pullPolicy: IfNotPresent
+  service:
+    port: 5432
+  auth:
+    database: bdusuarios
+    username: admin
+    password: admin
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClassName: "microk8s-hostpath"   # pon aquí tu storageClass si quieres fijarla
