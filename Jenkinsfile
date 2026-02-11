@@ -2,14 +2,14 @@ pipeline {
   agent any
 
   stages {
-    stage('Checkout1') {
+    stage('Checkout2') {
       steps {
         echo "Repositorio clonado correctamente"
         sh 'ls -la'
       }
     }
 
-    stage('Info1') {
+    stage('Info2') {
       steps {
         sh 'git rev-parse --short HEAD'
       }
