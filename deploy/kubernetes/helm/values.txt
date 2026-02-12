@@ -10,9 +10,9 @@ app:
     port: 80
     replicas: 1
   service:
-    type: ClusterIP
+    type: NodePort
     port: 3000
-    targetPort: 30087
+    nodePort: 30087
   ingress:
     enabled: true
     className: nginx

@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   stages {
-    stage('Checkout2') {
+    stage('Checkout') {
       steps {
         echo "Repositorio clonado correctamente"
         sh 'ls -la'
