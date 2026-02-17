@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mipoftfolio
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/morgadodesarrollador/portfolioHelm.git
+    targetRevision: main
+    path: deploy/kubernetes/helm
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mipoftfolio
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,7 @@
+services:
+  webtaller:
+    build: 
+      context: ../.. 
+      dockerfile: ./deploy/build_img/Dockerfile
+    image: morgadoberruezo/miportfolio
+ 

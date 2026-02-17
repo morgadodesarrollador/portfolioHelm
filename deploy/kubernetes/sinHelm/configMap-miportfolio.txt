@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  CONTENEDOR: ct$PROYECTO
+  CONTEXTO: /home/morgado/devops/HLC/Docker/Caronte
+  FIRMA: morgadoberruezo
+  PASSWORD: pswmorgado
+  PORT_NODE: "3010"
+  PORT_SSH: "45678"
+  PORT_WWW: "8810"
+  PROYECTO: miportfolio
+  TIPO: personales
+  USUARIO: morgado
+kind: ConfigMap
+metadata:
+  name: config-miportfolio
+  namespace: namespace-miportfolio

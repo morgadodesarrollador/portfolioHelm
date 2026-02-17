@@ -1,0 +1,15 @@
+aapiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-miportfolio
+  namespace: caronte-tienda
+data:
+  PROYECTO: {{ .Values.env.PROYECTO | quote }}
+  TIPO: {{ .Values.env.TIPO | quote }}
+  PORT_WWW: {{ .Values.env.PORT_WWW | quote }}
+  PORT_SSH: {{ .Values.env.PORT_SSH | quote }}
+  USUARIO: {{ .Values.env.USUARIO | quote }}
+  PASSWORD: {{ .Values.env.PASSWORD | quote }}
+  CONTEXTO: {{ .Values.env.CONTEXTO | quote }}
+  FIRMA: {{ .Values.env.FIRMA | quote }}
+  PORT_NODE: {{ .Values.env.PORT_NODE | quote }}

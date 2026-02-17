@@ -1,0 +1,43 @@
+app:
+  name: miportfolio
+  image:
+    repository: morgadoberruezo/miportfolio
+    tag: latest
+    pullPolicy: Always
+  # containerPort: 3000   
+  container: 
+    name: miportfolio
+    port: 80
+    replicas: 1
+  service:
+    type: ClusterIP
+    port: 3000
+    targetPort: 30087
+  ingress:
+    enabled: true
+    className: nginx
+    host: miportfolio.jamorgado.es
+    path: /
+    tls:
+      enabled: true
+      secretName: miportfolio-tls
+    certManager:
+      enabled: true
+      clusterIssuer: letsencrypt-prod
+
+postgres:
+  name: usuarios-postgres
+  image:
+    repository: postgres
+    tag: "15-alpine"
+    pullPolicy: IfNotPresent
+  service:
+    port: 5432
+  auth:
+    database: bdusuarios
+    username: admin
+    password: admin
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClassName: "microk8s-hostpath"   # pon aquí tu storageClass si quieres fijarla
