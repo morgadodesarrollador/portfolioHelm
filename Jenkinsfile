@@ -52,28 +52,29 @@ pipeline {
       }
     }
     stage('Update Helm values') {
-  steps {
-    withCredentials([usernamePassword(
-      credentialsId: '493c2a96-7449-446a-bc47-ece0e330cf16',
-      usernameVariable: 'GIT_USER',
-      passwordVariable: 'GIT_TOKEN'
-    )]) {
+      steps {
+        withCredentials([usernamePassword(
+          credentialsId: '493c2a96-7449-446a-bc47-ece0e330cf16',
+          usernameVariable: 'GIT_USER',
+          passwordVariable: 'GIT_TOKEN'
+        )]) {
 
-      sh """
-      git clone https://github.com/morgadodesarrollador/portfolioHelm.git helmrepo
-      cd helmrepo/deploy/kubernetes/helm
-      git checkout master
+          sh """
+          echo $GIT_USER, $GIT_TOKEN
+          git clone https://github.com/morgadodesarrollador/portfolioHelm.git helmrepo
+          cd helmrepo/deploy/kubernetes/helm
+          git checkout master
 
-      sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
+          sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
 
-      git config user.email "ci@jenkins"
-      git config user.name "jenkins"
+          git config user.email "ci@jenkins"
+          git config user.name "jenkins"
 
-      git commit -am "Update image tag to ${GIT_COMMIT}"
-      git push origin master
-      """
-    }
-  }
+          git commit -am "Update image tag to ${GIT_COMMIT}"
+          git push origin master
+          """
+        }
+      }
 }
 
   }
