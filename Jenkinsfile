@@ -62,6 +62,7 @@ pipeline {
       sh """
       git clone https://github.com/morgadodesarrollador/portfolioHelm.git helmrepo
       cd deploy/kubernetes/helm
+      git checkout master
 
       sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
 
@@ -69,7 +70,7 @@ pipeline {
       git config user.name "jenkins"
 
       git commit -am "Update image tag to ${GIT_COMMIT}"
-      git push
+      git push origin master
       """
     }
   }
