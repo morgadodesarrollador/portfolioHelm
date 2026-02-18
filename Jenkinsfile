@@ -61,7 +61,7 @@ pipeline {
 
       sh """
       git clone https://github.com/morgadodesarrollador/portfolioHelm.git helmrepo
-      cd deploy/kubernetes/helm
+      cd helmrepo/deploy/kubernetes/helm
       git checkout master
 
       sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
