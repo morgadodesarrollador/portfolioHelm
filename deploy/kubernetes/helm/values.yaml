@@ -2,7 +2,7 @@ app:
   name: miportfolio
   image:
     repository: morgadoberruezo/miportfolio
-    tag: c70e21133b15d36467394c0b69fc1165da5625e6
+    tag: 44786ec103326820559e9a9fd894868a7aa21f1e
     pullPolicy: Always
   # containerPort: 3000   
   container: 
@@ -29,7 +29,7 @@ app:
 #   name: usuarios-postgres
 #   image:
 #     repository: postgres
-#     tag: c70e21133b15d36467394c0b69fc1165da5625e6
+#     tag: 44786ec103326820559e9a9fd894868a7aa21f1e
 #     pullPolicy: IfNotPresent
 #   service:
 #     port: 5432
