@@ -1,25 +1,26 @@
 pipeline {
+
   agent {
     kubernetes {
       yaml """
-  apiVersion: v1
-  kind: Pod
-  spec:
-    containers:
-    - name: kaniko
-      image: gcr.io/kaniko-project/executor:debug
-      command:
-        - /busybox/cat
-      tty: true
-      volumeMounts:
-        - name: docker-config
-          mountPath: /kaniko/.docker
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: kaniko
+            image: gcr.io/kaniko-project/executor:debug
+            command:
+              - /busybox/cat
+            tty: true
+            volumeMounts:
+              - name: docker-config
+                mountPath: /kaniko/.docker
 
-    volumes:
-      - name: docker-config
-        secret:
-          secretName: dockerhub-secret
-  """
+          volumes:
+            - name: docker-config
+              secret:
+                secretName: dockerhub-secret
+        """
     }
   }
 
@@ -50,5 +51,29 @@ pipeline {
         }
       }
     }
+    stage('Update Helm values') {
+  steps {
+    withCredentials([usernamePassword(
+      credentialsId: 'github-creds',
+      usernameVariable: 'GIT_USER',
+      passwordVariable: 'GIT_TOKEN'
+    )]) {
+
+      sh """
+      git clone https://$GIT_USER:$GIT_TOKEN@github.com/morgadodesarrollador/portfolioHelm.git helmrepo
+      cd helmrepo/charts/portfolio
+
+      sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
+
+      git config user.email "ci@jenkins"
+      git config user.name "jenkins"
+
+      git commit -am "Update image tag to ${GIT_COMMIT}"
+      git push
+      """
+    }
+  }
+}
+
   }
 }
