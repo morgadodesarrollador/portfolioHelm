@@ -61,7 +61,7 @@ pipeline {
 
           sh """
           echo $GIT_USER, $GIT_TOKEN
-          git clone https://github.com/morgadodesarrollador/portfolioHelm.git helmrepo
+          git clone https://$GIT_USER:$GIT_TOKEN@github.com/morgadodesarrollador/portfolioHelm.git helmrepo
           cd helmrepo/deploy/kubernetes/helm
           git checkout master
 
