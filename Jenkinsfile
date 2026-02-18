@@ -61,7 +61,7 @@ pipeline {
 
       sh """
       git clone https://$GIT_USER:$GIT_TOKEN@github.com/morgadodesarrollador/portfolioHelm.git helmrepo
-      cd helmrepo/charts/portfolio
+      cd deploy/kubernetes/helm
 
       sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
 
