@@ -1,4 +1,4 @@
-{{- if and .Values.ingress .Values.ingress.enabled }}
+{{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -7,7 +7,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     {{- if and .Values.ingress.certManager .Values.ingress.certManager.enabled }}
-    cert-manager.io/cluster-issuer: {{ .Values.ingress.certManager.clusterIssuer }}
+    cert-manager.io/cluster-issuer: "{{ .Values.ingress.certManager.clusterIssuer }}"
     {{- end }}
 
 spec:

@@ -20,7 +20,7 @@ spec:
             type: DirectoryOrCreate
       containers:
         - name: {{ .Values.app.container.name }}
-          image: {{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}
+          image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
           imagePullPolicy: {{ .Values.app.image.pullPolicy }}
           envFrom:
             - configMapRef:
