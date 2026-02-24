@@ -65,7 +65,6 @@ pipeline {
           cd helmrepo/deploy/kubernetes/helm
           git checkout master
 
-          // sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
           sed -i "s/^\(\s*tag:\s*\).*/\1${GIT_COMMIT}/" values.yaml
 
           git config user.email "ci@jenkins"

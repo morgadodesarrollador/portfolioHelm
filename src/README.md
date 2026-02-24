@@ -11,3 +11,4 @@
 
 ![preview img](/preview.png)
 
+          // sed -i "s/tag:.*/tag: ${GIT_COMMIT}/" values.yaml
