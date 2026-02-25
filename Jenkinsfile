@@ -51,7 +51,7 @@ pipeline {
         }
       }
     }
-    stage('Update Helm valuess') {
+    stage('Update Helm values') {
       steps {
         withCredentials([usernamePassword(
           credentialsId: '493c2a96-7449-446a-bc47-ece0e330cf16',
