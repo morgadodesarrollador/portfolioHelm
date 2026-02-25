@@ -56,7 +56,7 @@ pipeline {
         withCredentials([usernamePassword(
           credentialsId: '493c2a96-7449-446a-bc47-ece0e330cf16',
           usernameVariable: 'GIT_USER',
-          passwordVariable: 'GIT_TOKEN'
+          passwordVariable: 'GIT_PASSWORD'
         )])
          {
           sh """
@@ -65,7 +65,7 @@ pipeline {
             --from-literal=type=git \
             --from-literal=url=https://github.com/morgadodesarrollador/portfolioHelm.git \
             --from-literal=username=morgadodesarrollador \
-            --from-literal=password=${$GIT_TOKEN} \
+            --from-literal=password=${$GIT_PASSWORD} \
             --dry-run=client -o yaml | kubectl apply -f -
           """
         }
@@ -76,7 +76,7 @@ pipeline {
         withCredentials([usernamePassword(
           credentialsId: '493c2a96-7449-446a-bc47-ece0e330cf16',
           usernameVariable: 'GIT_USER',
-          passwordVariable: 'GIT_TOKEN'
+          passwordVariable: 'GIT_PASSWORD'
         )]) {
 
           sh """
