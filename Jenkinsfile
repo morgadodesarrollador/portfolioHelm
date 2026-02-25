@@ -87,9 +87,9 @@ pipeline {
           kubectl create secret generic repo-secret-cred \
             --namespace argocd \
             --from-literal=type=git \
-            --from-literal=url=https://$GIT_USER:$GIT_PASSWORD@github.com/morgadodesarrollador/portfolioHelm.git \
-            --from-literal=username=morgadodesarrollador \
-            --from-literal=password=${$GIT_PASSWORD} \
+            --from-literal=url=https://github.com/morgadodesarrollador/portfolioHelm.git \
+            --from-literal=username=$GIT_USER \
+            --from-literal=password=$GIT_PASSWORD \
             --dry-run=client -o yaml | kubectl apply -f -
           """
         }
