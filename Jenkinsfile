@@ -75,26 +75,26 @@ pipeline {
         }
       }
     }
-    stage('Create ArgoCD Repo Secreto') {
-      steps {
-        withCredentials([usernamePassword(
-          credentialsId: '493c2a96-7449-446a-bc47-ece0e330cf16',
-          usernameVariable: 'GIT_USER',
-          passwordVariable: 'GIT_PASSWORD'
-        )])
-         {
-          sh """
-          kubectl create secret generic repo-secret-cred \
-            --namespace argocd \
-            --from-literal=type=git \
-            --from-literal=url=https://github.com/morgadodesarrollador/portfolioHelm.git \
-            --from-literal=username=$GIT_USER \
-            --from-literal=password=$GIT_PASSWORD \
-            --dry-run=client -o yaml | kubectl apply -f -
-          """
-        }
-      }
-    }
+    // stage('Create ArgoCD Repo Secreto') {
+    //   steps {
+    //     withCredentials([usernamePassword(
+    //       credentialsId: '493c2a96-7449-446a-bc47-ece0e330cf16',
+    //       usernameVariable: 'GIT_USER',
+    //       passwordVariable: 'GIT_PASSWORD'
+    //     )])
+    //      {
+    //       sh """
+    //       kubectl create secret generic repo-secret-cred \
+    //         --namespace argocd \
+    //         --from-literal=type=git \
+    //         --from-literal=url=https://github.com/morgadodesarrollador/portfolioHelm.git \
+    //         --from-literal=username=$GIT_USER \
+    //         --from-literal=password=$GIT_PASSWORD \
+    //         --dry-run=client -o yaml | kubectl apply -f -
+    //       """
+    //     }
+    //   }
+    // }
 
   }
 }
